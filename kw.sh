@@ -5,6 +5,7 @@ EASY_KERNEL_WORKFLOW=${EASY_KERNEL_WORKFLOW:-"kw"}
 src_script_path=${src_script_path:-"$HOME/.config/$EASY_KERNEL_WORKFLOW/src"}
 external_script_path=${external_script_path:-"$HOME/.config/$EASY_KERNEL_WORKFLOW/external"}
 config_files_path=${config_files_path:-"$HOME/.config/$EASY_KERNEL_WORKFLOW/etc"}
+kw_config_files_path=${kw_config_files_path:-"$HOME/.config/$EASY_KERNEL_WORKFLOW"}
 
 # Export external variables required by kworkflow
 export EASY_KERNEL_WORKFLOW
@@ -17,7 +18,7 @@ _kw_autocomplete()
     previous_command="${COMP_WORDS[COMP_CWORD-1]}"
     kw_options="export e build b bi install i prepare p new n ssh s
                 mail mount mo umount um boot bo vars v up u codestyle c
-                maintainers m help h"
+                maintainers m help h configm g"
 
     # By default, autocomplete with kw_options
     if [[ ${previous_command} == kw ]] ; then
@@ -155,6 +156,13 @@ function kw()
         . $src_script_path/get_maintainer_wrapper.sh --source-only
 
         execute_get_maintainer $@
+      )
+      ;;
+    configm|g)
+      (
+        . $src_script_path/config_manager.sh --source-only
+
+        execute_config_manager $@
       )
       ;;
     help|h)

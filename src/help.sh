@@ -23,5 +23,6 @@ function kworkflow-help()
     "\t                             the mailing list. \"-a\" also\n" \
     "\t                             prints files authors\n" \
     "\texplore,e - Search for expression on git log or directory\n" \
+    "\tconfigm,g [--save -n NAME [-d DESCRIPTION]|--ls] - Config manager\n" \
     "\thelp,h - displays this help mesage"
 }

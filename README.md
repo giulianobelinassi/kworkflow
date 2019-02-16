@@ -198,6 +198,22 @@ kw prepare --alert=vs
 > The default option, when --alert= is not given is n. It can be configured at
 > the kworflow.config file.
 
+```
+kw configm
+```
+
+> The 'configm' option represents the main application that manages the
+> '.config' files for users. In summary, it provides operations for save, load,
+> removes, and list '.config' files previously saved by the user. See the
+> current options:
+
+- `--save -n NAME [-d DESCRIPTION] [-f]` The save option to look for a local
+ '.config' file and expects a name for it (flag -n). If both requirement match,
+  kw saves the configuration file. Additionally, the user can add a description
+  for the '.config' file saved by kw, just use the '-d' flag.
+- `--ls` list all the config files available. It is displayed the
+  name and the description related to the '.config' file.
+
 # Tests
 
 > Tests rely on `shunit2`. The `run_tests.sh` automatically uses a

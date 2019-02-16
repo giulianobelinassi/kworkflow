@@ -13,6 +13,8 @@ declare -r INSTALLTO="$HOME/.config/$APPLICATIONNAME"
 declare -r EXTERNAL_SCRIPTS="external"
 declare -r SOUNDS="sounds"
 
+declare -r CONFIGS_PATH="configs"
+
 . src/kwio.sh --source-only
 
 function usage()
@@ -28,7 +30,17 @@ function clean_legacy()
 
   # Remove files
   if [ -d $INSTALLTO ]; then
-    mv $INSTALLTO $trash
+    # If we have configs, we should keep it
+    if [ -d $INSTALLTO/$CONFIGS_PATH ]; then
+        for dir in $INSTALLTO/*; do
+          if [[ $dir =~ "configs" ]]; then
+            continue
+          fi
+          mv $dir $trash
+        done
+    else
+      mv $INSTALLTO $trash
+    fi
   fi
 
   local toDelete="$APPLICATIONNAME"

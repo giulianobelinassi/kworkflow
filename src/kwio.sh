@@ -86,3 +86,24 @@ function success()
 {
     colored_print GREENCOLOR "$@"
 }
+
+# Ask for yes or no
+#
+# @message A string with the message to be displayed for the user.
+#
+# Return:
+# Return "true" if the user accept the question, otherwise, return "false"
+#
+# Note: ask_yN return the string 'true' and 'false', you have to handle it by
+# yourself in the code.
+function ask_yN()
+{
+  local message=$1
+
+  read -r -p "$message [y/N] " response
+  if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+    echo "true"
+  else
+    echo "false"
+  fi
+}
